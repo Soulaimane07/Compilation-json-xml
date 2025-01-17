@@ -1,16 +1,23 @@
 import React from 'react'
-import { FaArrowDown } from 'react-icons/fa6'
+import { FaChevronDown } from "react-icons/fa";
 
 function Header() {
   return (
-    <div className='bg-gray-200 min-h-screen pt-36 flex flex-col'>
-            <h1 className='text-4xl font-semibold text-center'> Converter JSON & XML </h1>
-            <p className=' text-center w-1/2 mx-auto mt-6 opacity-60 text-sm'> It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum </p>
-            <a href='#main' className='bg-violet-500 hover:bg-violet-600 transition-all hover:scale-105 flex items-center space-x-3 px-10 py-3 rounded-xl text-white font-medium w-fit mx-auto mt-10'> 
-                <p> Get Started  </p>
-                <FaArrowDown  />
-            </a>
-        </div>
+    
+    <div className='flex mb-40'>
+       <div className=' h-screen w-1/2  '>
+           <h1 className=' text-black text-5xl p-4 mb-4 mt-60 ml-28 mr-14 font-semibold '> Many desktop publishing packages </h1>
+           <h2 className=' text-gray-500 ml-36 mr-12 '>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</h2>
+           <div className='w-full flex justify-center '>
+             <button className='bg-violet-500 font-semibold text-white  mt-10 rounded-lg px-16 py-4  mx-auto flex flex-col justify-center'>
+              <p>Get started </p>
+             <FaChevronDown className=' w-full' />
+             </button>
+           </div>
+       </div>
+       <div className='w-1/2 iùmagebg mt-20 '>
+       </div> 
+    </div>
   )
 }
 

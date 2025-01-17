@@ -3,11 +3,11 @@ import Header from './Header';
 import Converter from './Converter';
 
 
-function Main() {
+function Main({setShowfile}) {
   return (
-    <div>
+    <div className='bg-gray-200'>
         <Header />
-        <Converter />
+        <Converter setShowfile={setShowfile} />
     </div>
   )
 }
