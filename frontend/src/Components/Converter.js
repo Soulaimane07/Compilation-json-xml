@@ -5,7 +5,7 @@ import { IoMdClose } from "react-icons/io";
 function Converter({setShowfile}) {
     const [files, setFiles] = useState([])
 
-    const handleFileChange = (e) => {
+    const handleFileChange = (e) => { 
         // Convert FileList to an array and append to the existing list
         const selectedFiles = Array.from(e.target.files);
         setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
@@ -25,7 +25,7 @@ function Converter({setShowfile}) {
         else return `${(size / 1024 ** 3).toFixed(2)} GB`;
     };
 
-    
+
   return (
     <div id='main' className='min-h-screen p-10 w-1/2 mx-auto'>
         {files.length === 0 
