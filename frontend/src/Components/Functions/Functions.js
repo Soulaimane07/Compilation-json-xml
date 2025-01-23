@@ -1,3 +1,6 @@
+import axios from "axios";
+import { useDispatch } from "react-redux";
+
 export const handleRemoveFile = (index, files, setFiles) => {
     // Create a new array excluding the file at the selected index
     const updatedFiles = files.filter((_, fileIndex) => fileIndex !== index);
@@ -31,5 +34,31 @@ export const DownloadFile = (fileContent, filedata) => {
     link.download = filedata.name;
     link.click();
     URL.revokeObjectURL(url);
-  };
+};
   
+
+
+
+export const  ConvertTextFun  = async (e, type, data, setChange) => {
+  e.preventDefault();
+
+
+  const xmlString = '<content><person><email>test</email><age>10</age></person></content>';
+  const jsonString = '{"name": "John Doe", "age": 30}';
+
+  const url = type === "json" 
+    ? 'http://localhost:8080/api/v1/convert/json-to-xml'
+    : 'http://localhost:8080/api/v1/convert/xml-to-json'
+
+  const formData = new FormData();
+  formData.append('content',  data);
+
+  try {
+    const response = await axios.post(url, formData);
+    setChange(response.data);
+    console.log(response.data);
+  } catch (error) {
+    console.error('Error converting XML to JSON:', error);
+    throw error;
+  }
+};

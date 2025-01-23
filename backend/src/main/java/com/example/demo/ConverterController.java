@@ -8,6 +8,7 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/v1/convert")
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
 public class ConverterController {
 
     private final ManualXmlToJsonParser xmlToJsonParser = new ManualXmlToJsonParser(); // Custom XML to JSON parser

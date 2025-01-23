@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import File from '../../Components/Files/File';
+import File2 from '../../Components/Files/FIle2';
+import { useDispatch } from 'react-redux';
+import { setJson, setXml } from '../../Components/Redux/Slices/ContentSlice';
 
 
 function Converter({setShowfile}) {
@@ -10,6 +13,38 @@ function Converter({setShowfile}) {
         const selectedFiles = Array.from(e.target.files);
         setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
     };
+
+
+
+
+
+    const dispatch = useDispatch()
+
+    const Convert = () => {
+        let file = files[0]
+
+        if (file.name.endsWith('.json')) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                // setFileContent(reader.result); // Store the content of the file
+                dispatch(setJson(reader.result))
+
+            };
+            reader.readAsText(file); // Read the file content as text
+            
+            
+        } else if (file.name.endsWith('.xml')) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                // setFileContent(reader.result); // Store the content of the file
+                dispatch(setXml(reader.result))
+
+            };
+            reader.readAsText(file);
+
+        } 
+    }
+    
 
   return (
     <div id='converter' className='pb-80 px-60 '>
@@ -26,7 +61,7 @@ function Converter({setShowfile}) {
                             </div>
                             <input 
                                 onChange={(e)=> handleFileChange(e)}
-                                multiple
+                                
                                 id="dropzone-file" 
                                 accept=".json,.xml"
                                 type="file" 
@@ -42,6 +77,15 @@ function Converter({setShowfile}) {
                                 <File key={key} file={file} id={key} setShowfile={setShowfile} setFiles={setFiles} files={files} />
                             ))}
                         </ul>
+
+                        <div className='flex mt-4 items-center justify-end'>
+                            <button
+                                onClick={Convert}
+                                className={`bg-violet-700 hover:bg-violet-500 transition-all inline-flex items-center px-8 py-3 text-sm font-medium text-center text-white  rounded-lg focus:ring-4 focus:ring-violet-200 hover:bg-violet-800"`}
+                            >
+                                Convert
+                            </button>
+                        </div>
                     </div>    
             } 
         </div>
